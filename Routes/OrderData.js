@@ -3,7 +3,7 @@ const router = express.Router()
 const Order = require('../models/Orders')
 const { model } = require('mongoose')
 
-router.post('./orderData', async(req, res)=>{
+router.post('/orderData', async(req, res)=>{
     let data =req.body.order_data
     await data.splice(0,0, {order_data: req.body.order_data})
     let eId = await Order.findOne({'email': req.body.email})

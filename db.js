@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
-const MongoURI="mongodb+srv://gofood:gofood@cluster0.oldqypw.mongodb.net/gofoodmern?retryWrites=true&w=majority&appName=Cluster0"
+const dotenv = require("dotenv").config();
+// const MongoURI="mongodb+srv://gofood:gofood@cluster0.oldqypw.mongodb.net/gofoodmern?retryWrites=true&w=majority&appName=Cluster0"
 const mongoDB=async()=>{
-    await mongoose.connect(MongoURI).then(async()=>{
+    await mongoose.connect(process.env.MONGO_URI).then(async()=>{
     console.log('db connected')
     const fetchedData=await mongoose.connection.db.collection('food_items');
     // console.log(`fetched data is ${fetchedData}`)

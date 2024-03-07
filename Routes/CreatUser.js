@@ -4,7 +4,7 @@ const User = require('../models/user')
 const { body, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const jwtSecret = "MynameisRajashekarYoutTubeChannel$#"
+// const jwtSecret = "MynameisRajashekarYoutTubeChannel$#"
 router.post("/creatuser",[ 
 body('email').isEmail(),
 body('name').isLength({ min: 5 }),
@@ -53,7 +53,7 @@ router.post("/loginuser",[
                     id:userData.id
                  }
             }
-            const authToken =jwt.sign(data,jwtSecret)
+            const authToken =jwt.sign(data,process.env.JWTSECRET)
             return res.json({success:true,authToken:authToken})
         }catch (error){
             console.log(error)
